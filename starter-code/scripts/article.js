@@ -2,9 +2,15 @@
 
 var articles = [];
 
-function Article (rawDataObj) {
+function Article (title, catagory, author, authorUrl, publishedOn, body) {
   // TODO: Use the JS object passed in to complete this constructor function:
   // Save ALL the properties of `rawDataObj` into `this`
+  this.title = title;
+  this.catagory = catagory;
+  this.author = author;
+  this.authorUrl = authorUrl;
+  this.publishedOn = publishedOn;
+  this.body = body;
 }
 
 Article.prototype.toHtml = function() {
@@ -13,7 +19,7 @@ Article.prototype.toHtml = function() {
   However, in our modules.css stylesheet, we gave all elements
   with a class of template a display of none. Let's make
   sure we're not accidentally hiding our cloned article! */
-
+  $('$newArticle').removeClass();
   if (!this.publishedOn) $newArticle.addClass('draft');
   $newArticle.data('category', this.category);
 
