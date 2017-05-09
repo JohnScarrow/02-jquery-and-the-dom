@@ -2,15 +2,10 @@
 
 var articles = [];
 
-function Article (title, catagory, author, authorUrl, publishedOn, body) {
+function Article (rawDataObj) {
   // TODO: Use the JS object passed in to complete this constructor function:
   // Save ALL the properties of `rawDataObj` into `this`
-  this.title = title;
-  this.catagory = catagory;
-  this.author = author;
-  this.authorUrl = authorUrl;
-  this.publishedOn = publishedOn;
-  this.body = body;
+  this.rawDataObj = rawDataObj;
 }
 
 Article.prototype.toHtml = function() {
@@ -19,10 +14,13 @@ Article.prototype.toHtml = function() {
   However, in our modules.css stylesheet, we gave all elements
   with a class of template a display of none. Let's make
   sure we're not accidentally hiding our cloned article! */
-  $('$newArticle').removeClass();
+  $newArticle.removeClass();
   if (!this.publishedOn) $newArticle.addClass('draft');
-  $newArticle.data('category', this.category);
-
+  $newArticle.data('category', this.rawDataObj.category);
+  $newArticle.find('h1').text(this.rawDataObj.title);
+  $newArticle.find('address', 'a').text(this.rawDataObj.author);
+  $newArticle.data('href', this.rawDataObj.authorUrl);
+  $newArticle.find('.article-body').html(this.rawDataObj.body);
   /* TODO: Now use jQuery traversal and setter methods to fill in the rest
   of the current template clone with properties from this particular Article instance.
   We need to fill in:
