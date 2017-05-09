@@ -5,7 +5,12 @@ var articles = [];
 function Article (rawDataObj) {
   // TODO: Use the JS object passed in to complete this constructor function:
   // Save ALL the properties of `rawDataObj` into `this`
-  this.rawDataObj = rawDataObj;
+  this.catagory = rawDataObj.catagory;
+  this.title = rawDataObj.title;
+  this.author = rawDataObj.author;
+  this.authorUrl = rawDataObj.authorUrl;
+  this.body = rawDataObj.body;
+  this.publishedOn = rawDataObj.publishedOn;
 }
 
 Article.prototype.toHtml = function() {
@@ -16,11 +21,11 @@ Article.prototype.toHtml = function() {
   sure we're not accidentally hiding our cloned article! */
   $newArticle.removeClass();
   if (!this.publishedOn) $newArticle.addClass('draft');
-  $newArticle.data('category', this.rawDataObj.category);
-  $newArticle.find('h1').text(this.rawDataObj.title);
-  $newArticle.find('address', 'a').text(this.rawDataObj.author);
-  $newArticle.data('href', this.rawDataObj.authorUrl);
-  $newArticle.find('.article-body').html(this.rawDataObj.body);
+  $newArticle.data('category', this.category);
+  $newArticle.find('h1').text(this.title);
+  $newArticle.find('address', 'a').text(this.author);
+  $newArticle.data('href', this.authorUrl);
+  $newArticle.find('.article-body').html(this.body);
   /* TODO: Now use jQuery traversal and setter methods to fill in the rest
   of the current template clone with properties from this particular Article instance.
   We need to fill in:
